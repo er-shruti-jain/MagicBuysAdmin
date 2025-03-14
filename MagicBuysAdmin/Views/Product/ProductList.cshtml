@@ -1,4 +1,5 @@
-﻿@using MagicBuysAdmin.Models;
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@using MagicBuysAdmin.Models;
 <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -38,7 +39,8 @@
     </div>
 </nav>
 
-<div class="row">
+<div class="container">
+<div class="row mt-5">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
@@ -46,7 +48,7 @@
                 <div>
                         @ViewBag.Object1
                          @TempData["object1"]
-                    <a href="/AddProduct">Create New</a>
+                    <a  asp-controller="Product" asp-action="AddProduct">Create New</a>
                 </div>
             </div>
             <div class="card-body">
@@ -54,14 +56,14 @@
                     <table class="table table-striped table-bordered zero-configuration">
                         <thead>
                             <tr>
-                                <th>Product Name</th>
-                                <th>Product Description</th>
-                                <th>Product Price</th>
-                                <th>Product Quantity</th>
-                                <th>Product Image</th>
-                                <th>Product Category</th>
-                                <th>Product Brand</th>
-                                <th>Product Status</th>
+                                <th>ID</th>
+                                <th> Name</th>
+                                <th> Description</th>
+                                <th> Price</th>
+                                <th> Quantity</th>
+                                <th>GST</th>
+                                <th> Total</th>
+                                
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -72,8 +74,16 @@
                                     <td>@item.Id </td>
                                     <td>@item.Name </td>
                                     <td>@item.Description </td>
-                                    <td>@item.price </td>
-                                    <td>@item.quantity </td>
+                                    <td>@item.Price </td>
+                                    <td>@item.Quantity </td>
+                                    <td>@item.GST</td>
+                                    <td>@item.Total</td>
+                                    <td>
+                                        <a class="btn btn-success" asp-controller="Product" asp-action="EditProduct"
+                                        asp-route-ID="@item.Id">Edit</a>
+                                            <a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct"
+                                            asp-route-ID="@item.Id">Delete</a>
+                                    </td>
                                 </tr>
                             }
 
@@ -83,6 +93,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
    

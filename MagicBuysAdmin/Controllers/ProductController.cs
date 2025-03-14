@@ -36,13 +36,24 @@ namespace MagicBuysAdmin.Controllers
             return "Delete Product "+ id.ToString();
         }
 
+        [HttpGet]
         [Route("AddProduct")]
         public IActionResult AddProduct()
         {
+
+            return View();
+        }
+
+        [HttpPost]
+        [Route("AddProduct")]
+        public IActionResult AddProduct(ProductAddModel _productAddModel)
+        {
+            this._productService.AddProduct(_productAddModel);
+
             return View();
         }
 
 
-       
+
     }
 }
