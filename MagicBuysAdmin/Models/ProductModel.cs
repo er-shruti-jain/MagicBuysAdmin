@@ -12,5 +12,9 @@ namespace MagicBuysAdmin.Models
         public int Quantity { get; set; }
         public int GST { get; set; }
         public int Total { get; set; }
+        public string? MainImage { get; set; }
     }
 }
+
+// add-migration -migrationname
+//update-database -migrationname

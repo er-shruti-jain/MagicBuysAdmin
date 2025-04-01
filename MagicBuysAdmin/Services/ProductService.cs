@@ -29,7 +29,7 @@ namespace MagicBuysAdmin.Services
 
 
         }
-
+        
         public ProductModel gstcalculate(ProductModel pm)
         {
             pm.GST = 18;

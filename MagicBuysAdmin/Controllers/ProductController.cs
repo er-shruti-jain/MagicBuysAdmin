@@ -8,10 +8,12 @@ namespace MagicBuysAdmin.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-       
-        public ProductController(IProductService pservice)
+        private readonly IWebHostEnvironment _env;
+
+        public ProductController(IProductService pservice,IWebHostEnvironment env)
         {
             this._productService = pservice;
+            this._env = env;
         }
 
         [Route("/")]
@@ -48,11 +50,26 @@ namespace MagicBuysAdmin.Controllers
         [Route("AddProduct")]
         public IActionResult AddProduct(ProductAddModel _productAddModel)
         {
+            if (_productAddModel.MainImage != null)
+            {
+                saveimage(_productAddModel.MainImage);
+            }
             this._productService.AddProduct(_productAddModel);
 
-            return View();
+            return RedirectToAction("ProductList");
         }
 
+        string saveimage(IFormFile MainImage)
+        {
+            string fileName = Path.GetFileName(MainImage.FileName).Trim().Replace(" ","_");
+            string filePath = Path.Combine(_env.WebRootPath, "Images", "Products", fileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                MainImage.CopyTo(stream);
+            }
+
+            return filePath;
+        }
 
 
     }

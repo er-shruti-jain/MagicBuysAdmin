@@ -23,6 +23,10 @@
             <label asp-for="Quantity" class="form-label">Quantity</label>
             <input type="number" class="form-control" asp-for="Quantity">
     </div>
+        <div class="col-md-6">
+            <label asp-for="MainImage" class="form-label">Product Image</label>
+            <input type="file" class="form-control" asp-for="MainImage">
+        </div>
  
     <div class="col-12 mt-5">
             <button type="submit" class="btn btn-outline-danger" asp-controller="Product"
